@@ -12,6 +12,7 @@
 #define CMD_LED_SET_MASK                    0xA
 #define CMD_LED_CLEAR_MASK                  0xB
 #define CMD_LED_SET_FORECOLOR               0xC
+#define CMD_LED_RESET_FORECOLOR               0xD
 
 void annepro2LedDisable(void);
 void annepro2LedEnable(void);
@@ -25,3 +26,4 @@ void annepro2LedPrevProfile(void);
 void annepro2LedSetMask(uint8_t key);
 void annepro2LedClearMask(uint8_t key);
 void annepro2LedSetForeColor(uint8_t red, uint8_t green, uint8_t blue);
+void annepro2LedResetForeColor(void);
