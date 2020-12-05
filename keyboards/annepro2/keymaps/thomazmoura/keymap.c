@@ -115,7 +115,7 @@ enum {
   /*
   * Layer _MEDIA_AND_NAVIGATION_LAYER
   * ,-----------------------------------------------------------------------------------------.
-  * | USB | BT1 | BT2 | BT3 | BT4 |     |     |     |LEDCH|LEDON|     |     |     |           |
+  * | USB | BT1 | BT2 | BT3 | BT4 |     |     |     |     |LEDCH|LEDON|LEDIN|LEDSP|           |
   * |-----------------------------------------------------------------------------------------+
   * |        |     |     |     |     |     | MUTE| PREV| PLAY| NEXT|     |     |     |        |
   * |-----------------------------------------------------------------------------------------+
@@ -128,7 +128,7 @@ enum {
   *
   */
  [_MEDIA_AND_NAVIGATION_LAYER] = KEYMAP( /* Base */
-    KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______, _______, _______, _______,  NEXT_PROFILE, ENABLE_OR_DISABLE_LEDS, _______, _______, KC_AP2_BT_UNPAIR,
+    KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______, _______, _______, _______,  NEXT_PROFILE, ENABLE_OR_DISABLE_LEDS, KC_AP_LED_NEXT_INTENSITY, KC_AP_LED_SPEED,  KC_AP2_BT_UNPAIR,
        _______,    _______,    _______,      KC_UP,    _______, _______, KC_MUTE, KC_MPRV, KC_MPLY,       KC_MNXT,                _______, KC_BRID, KC_BRIU, _______,
        _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______, KC_HOME, KC_PGDN, KC_PGUP,        KC_END,                _______, _______, _______,
        _______,    _______,    _______,    _______,    _______, _______, _______, _______, KC_VOLD,       KC_VOLU,                _______, _______,
