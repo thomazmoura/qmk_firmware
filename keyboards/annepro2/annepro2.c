@@ -72,12 +72,12 @@ void matrix_scan_kb() {
     while(!sdGetWouldBlock(&SD1)) {
         sdReadTimeout(&SD1, (uint8_t *) &BLECapsLock, sizeof(ble_capslock_t), 10);
 
-        // if it's capslock from ble, darken led
+        /*// if it's capslock from ble, darken led
         if (BLECapsLock.caps_lock) {
             annepro2LedClearMask(MATRIX_COLS * 2);
         } else {
             annepro2LedSetMask(MATRIX_COLS * 2);
-        }
+        }*/
     }
 
 
