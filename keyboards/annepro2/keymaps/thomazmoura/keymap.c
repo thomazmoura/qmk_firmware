@@ -36,12 +36,15 @@ enum profile {
   ANIMATEDRAINBOWFLOW,
   ANIMATEDRAINBOWWATERFALL,
   ANIMATEDBREATHING,
-  ANIMATEDSPECTRUM
+  ANIMATEDWAVE,
+  ANIMATEDSPECTRUM,
+  REACTIVEFADE
 };
 
 uint8_t cyclabe_profiles[] = {
   IDLE_PROFILE_INDEX,
   ANIMATEDRAINBOWFLOW,
+  REACTIVEFADE,
   ANIMATEDRAINBOWVERTICAL,
   ANIMATEDRAINBOWWATERFALL,
   ANIMATEDBREATHING,
@@ -205,10 +208,18 @@ uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
 uint8_t mouse_profile[] = {0x00,0x88,0xFF};
 
 void matrix_init_user(void) {
-
 }
 
 void matrix_scan_user(void) {
+    while(!sdGetWouldBlock(&SD1)) {
+        sdReadTimeout(&SD1, (uint8_t *) &BLECapsLock, sizeof(ble_capslock_t), 10);
+
+        if (BLECapsLock.caps_lock) {
+            annepro2LedSetForegroundColor(0xFF, 0x00, 0x00);
+        } else {
+            annepro2LedResetForegroundColor();
+        }
+    }
 }
 
 void keyboard_post_init_user(void) {
