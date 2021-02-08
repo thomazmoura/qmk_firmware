@@ -234,7 +234,7 @@ void resetProfileColor(void) {
   } else if(base_profile == IDLE_PROFILE_INDEX) {
     annepro2LedSetForegroundColor(idle_profile[0], idle_profile[1], idle_profile[2]);
   } else {
-    annepro2LedSetProfile(cyclabe_profiles[base_profile]);
+    annepro2LedResetForegroundColor();
   } 
 }
 
