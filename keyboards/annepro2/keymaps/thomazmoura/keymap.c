@@ -362,6 +362,10 @@ void grave_layer_reset(qk_tap_dance_state_t *state, void *user_data) {
   grav_tap_state.state = 0;
 }
 
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+  annepro2LedSetForegroundColor(data[0], data[1], data[2]);
+}
+
 // Associate our tap dance key with its functionality
 qk_tap_dance_action_t tap_dance_actions[] = {
   [ESC_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, esc_layer_finished, esc_layer_reset, 250),
