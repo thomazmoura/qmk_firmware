@@ -9,7 +9,6 @@ enum anne_pro_layers {
   _FUNCTION_LAYER,
   _MEDIA_AND_NAVIGATION_LAYER,
   _NUMPAD_LAYER,
-  _SAMPLE_LAYER,
 };
 
 typedef struct {
@@ -25,7 +24,7 @@ enum {
     DOUBLE_HOLD,
     TRIPLE_TAP,
     TRIPLE_HOLD,
-    QUAD_TAP
+    QUAD_TAP,
 };
 
 enum profile {
@@ -99,13 +98,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, KC_BTN3, KC_BTN4, KC_BTN5, _______, _______, _______, 
     _______, _______, _______, KC_BTN1, _______, _______, _______, _______
   ),
-  [_SAMPLE_LAYER] = KEYMAP(
-    TD(ESC_TAP_DANCE), KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
-    KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
-    KC_CAPS, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
-    KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_UP),
-    KC_LCTL, KC_LGUI, KC_LALT, KC_SPC, KC_RALT, LT(_MEDIA_AND_NAVIGATION_LAYER,KC_LEFT), LT(_FUNCTION_LAYER,KC_DOWN), RCTL_T(KC_RGHT)
-  ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
 
@@ -131,7 +123,6 @@ uint8_t function_profile[] = {0x00,0xFF,0x00};
 uint8_t navigation_profile[] = {0x44,0x00,0xFF};
 uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
 uint8_t mouse_profile[] = {0x00,0x88,0xFF};
-uint8_t sample_profile[] = {0xDD,0x44,0x00};
 
 void matrix_init_user(void) {
 }
@@ -177,9 +168,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _MOUSE_LAYER:
       enableProfileColor(mouse_profile);
-      break;
-    case _SAMPLE_LAYER:
-      enableProfileColor(sample_profile);
       break;
     case _MEDIA_AND_NAVIGATION_LAYER:
       enableProfileColor(navigation_profile);
@@ -281,10 +269,9 @@ void esc_layer_finished(qk_tap_dance_state_t *state, void *user_data) {
       layer_on(_FUNCTION_LAYER);
       break;
     case DOUBLE_TAP:
-      if (layer_state_is(_MOUSE_LAYER) || layer_state_is(_NUMPAD_LAYER) || layer_state_is(_MEDIA_AND_NAVIGATION_LAYER)) {
+      if (layer_state_is(_MOUSE_LAYER) || layer_state_is(_NUMPAD_LAYER)) {
         layer_off(_MOUSE_LAYER);
         layer_off(_NUMPAD_LAYER);
-        layer_off(_SAMPLE_LAYER);
       } else {
         tap_code(KC_ESC);
         tap_code(KC_ESC);
@@ -304,10 +291,10 @@ void esc_layer_finished(qk_tap_dance_state_t *state, void *user_data) {
       layer_on(_MOUSE_LAYER);
       break;
     case QUAD_TAP:
-      if (layer_state_is(_SAMPLE_LAYER)) {
-        layer_off(_SAMPLE_LAYER);
+      if (layer_state_is(_NUMPAD_LAYER)) {
+        layer_off(_NUMPAD_LAYER);
       } else {
-        layer_on(_SAMPLE_LAYER);
+        layer_on(_NUMPAD_LAYER);
       }
       break;
   }
