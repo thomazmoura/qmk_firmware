@@ -8,6 +8,7 @@ enum anne_pro_layers {
   _MOUSE_LAYER,
   _FUNCTION_LAYER,
   _MEDIA_AND_NAVIGATION_LAYER,
+  _CORRECTION_LAYER,
   _NUMPAD_LAYER,
 };
 
@@ -75,12 +76,12 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_PSCR, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______
+    _______, _______, _______, MO(_CORRECTION_LAYER), _______, _______, _______, _______
   ),
   [_MEDIA_AND_NAVIGATION_LAYER] = KEYMAP(
     KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______, _______, _______, _______,  NEXT_PROFILE, ENABLE_OR_DISABLE_LEDS, KC_AP_LED_NEXT_INTENSITY, KC_AP_LED_SPEED,  KC_PAUSE,
        _______,    _______,    _______,      KC_UP,    _______, _______, KC_MUTE, KC_MPRV, KC_MPLY,       KC_MNXT,                _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
-       _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______, KC_HOME, KC_PGDN, KC_PGUP,        KC_END,                _______, _______, _______,
+       MO(_CORRECTION_LAYER),    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______, KC_HOME, KC_PGDN, KC_PGUP,        KC_END,                _______, _______, _______,
        _______,    _______,    _______,    _______,    _______, _______, _______, _______, KC_VOLD,       KC_VOLU,                _______, _______,
        _______,    _______,    _______,    _______,    _______, _______, _______, _______
   ),
@@ -97,6 +98,13 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN2, _______, _______,
     _______, _______, _______, _______, _______, _______, KC_BTN3, KC_BTN4, KC_BTN5, _______, _______, _______, 
     _______, _______, _______, KC_BTN1, _______, _______, _______, _______
+  ),
+  [_CORRECTION_LAYER] = KEYMAP(
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, KC_BSPC, _______, _______,  KC_DEL, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
+    _______, _______, _______, _______, _______, _______, _______, _______
   ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
@@ -123,6 +131,7 @@ uint8_t function_profile[] = {0x00,0xFF,0x00};
 uint8_t navigation_profile[] = {0xAA,0xFF,0xFF};
 uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
 uint8_t mouse_profile[] = {0x00,0x88,0xFF};
+uint8_t correction_profile[] = {0x88,0x00,0xFF};
 
 void matrix_init_user(void) {
 }
@@ -171,6 +180,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _MEDIA_AND_NAVIGATION_LAYER:
       enableProfileColor(navigation_profile);
+      break;
+    case _CORRECTION_LAYER:
+      enableProfileColor(correction_profile);
       break;
     default:
       resetProfileColor();
