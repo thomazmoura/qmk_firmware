@@ -55,7 +55,9 @@ uint8_t cyclabe_profiles[] = {
 
 enum custom_codes {
   NEXT_PROFILE = AP2_SAFE_RANGE,
-  ENABLE_OR_DISABLE_LEDS
+  ENABLE_OR_DISABLE_LEDS,
+  MAXIMIZE_APP,
+  MINIMIZE_APP
 };
 
 enum {
@@ -82,7 +84,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______, _______, _______, _______,  NEXT_PROFILE, ENABLE_OR_DISABLE_LEDS, KC_AP_LED_NEXT_INTENSITY, KC_AP_LED_SPEED,  KC_PAUSE,
        _______,    _______,    _______,      KC_UP,    _______, _______, KC_MUTE, KC_MPRV, KC_MPLY,       KC_MNXT,                _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
        MO(_CORRECTION_LAYER),    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______, KC_HOME, KC_PGDN, KC_PGUP,        KC_END,                _______, _______, _______,
-       _______,    _______,    _______,    _______,    _______, _______, _______, _______, KC_VOLD,       KC_VOLU,                _______, _______,
+       _______,    _______,    _______,    _______,    _______, _______, MINIMIZE_APP, MAXIMIZE_APP, KC_VOLD,       KC_VOLU,                _______, _______,
        _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), _______, _______
   ),
   [_MOUSE_LAYER] = KEYMAP(
@@ -263,6 +265,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           annepro2LedEnable();
           is_led_on = true;
         }
+      }
+      return true;
+    case MAXIMIZE_APP:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(" ") "x");
+      }
+      return true;
+    case MINIMIZE_APP:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(" ") "n");
       }
       return true;
     default:
