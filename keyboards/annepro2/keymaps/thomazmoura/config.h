@@ -1,7 +1,7 @@
 #pragma once
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 200
+#define TAPPING_TERM 225
 
 #undef TAPPING_TOGGLE
 #define TAPPING_TOGGLE 2
