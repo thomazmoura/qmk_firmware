@@ -29,24 +29,29 @@ enum {
 };
 
 enum profile {
+  WHITE,
   RED,
   GREEN,
   BLUE,
   RAINBOWHORIZONTAL,
-  RAINBOWVERTICAL, 
+  RAINBOWVERTICAL,
   ANIMATEDRAINBOWVERTICAL,
   ANIMATEDRAINBOWFLOW,
   ANIMATEDRAINBOWWATERFALL,
   ANIMATEDBREATHING,
   ANIMATEDWAVE,
   ANIMATEDSPECTRUM,
-  REACTIVEFADE
+  REACTIVEFADE,
+  REACTIVEPULSE,
+  REACTIVETERM,
 };
 
 uint8_t cyclabe_profiles[] = {
   IDLE_PROFILE_INDEX,
   ANIMATEDRAINBOWFLOW,
   REACTIVEFADE,
+  REACTIVEPULSE,
+  REACTIVETERM,
   ANIMATEDRAINBOWVERTICAL,
   ANIMATEDRAINBOWWATERFALL,
   ANIMATEDBREATHING,
@@ -134,7 +139,7 @@ uint8_t function_profile[] = {0x00,0xFF,0x00};
 uint8_t navigation_profile[] = {0x00,0x00,0xFF};
 uint8_t correction_profile[] = {0x00,0xFF,0xFF};
 uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
-uint8_t mouse_profile[] = {0xAA,0xFF,0xFF};
+uint8_t mouse_profile[] = {0x3F,0x7D,0xFF};
 
 void matrix_init_user(void) {
 }
@@ -379,4 +384,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [ESC_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, esc_layer_finished, esc_layer_reset, 250),
   [GRV_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, grave_layer_finished, grave_layer_reset, 300)
 };
+
 
