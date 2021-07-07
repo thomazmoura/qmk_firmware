@@ -269,12 +269,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true;
     case MAXIMIZE_APP:
       if (record->event.pressed) {
-        SEND_STRING(SS_LALT(" ") SS_DELAY(10) "x");
+        SEND_STRING(SS_LALT(" ") SS_DELAY(75) "x");
       }
       return true;
     case MINIMIZE_APP:
       if (record->event.pressed) {
-        SEND_STRING(SS_LALT(" ") SS_DELAY(10) "n");
+        SEND_STRING(SS_LALT(" ") SS_DELAY(75) "n");
       }
       return true;
     default:
