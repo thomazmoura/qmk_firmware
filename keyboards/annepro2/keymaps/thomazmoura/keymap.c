@@ -108,6 +108,9 @@ void esc_layer_finished(qk_tap_dance_state_t *state, void *user_data);
 void esc_layer_reset(qk_tap_dance_state_t *state, void *user_data);
 
 bool is_focus_mode_on = true;
+bool is_caps_on = false;
+
+const ap2_led_t caps_color = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
 
 uint8_t idle_profile[] = {0x00,0x00,0x00};
 uint8_t caps_profile[] = {0xFF,0x00,0x00};
@@ -129,11 +132,12 @@ void keyboard_post_init_user(void) {
 // The function to handle the caps lock logic
 bool led_update_user(led_t leds) {
     if (leds.caps_lock) {
-        const ap2_led_t color = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
-        ap2_led_mask_set_mono(color);
+        ap2_led_mask_set_mono(caps_color);
+        is_caps_on = true;
     } else {
         ap2_led_unset_sticky_all();
-    }
+        is_caps_on = false;
+    } 
 
     return true;
 }
@@ -159,7 +163,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       enable_profile_color(game_layer);
       break;
     default:
-      reset_profile_color();
+      if(is_caps_on) {
+        ap2_led_mask_set_mono(caps_color);
+      } else {
+        reset_profile_color();
+      }
       break;
   }
 
