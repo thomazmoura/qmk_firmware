@@ -34,6 +34,7 @@ enum custom_codes {
   KC_MAXIMIZE = AP2_SAFE_RANGE,
   KC_MINIMIZE,
   KC_TOG_IDLE,
+  KC_RGB_NEXT,
 };
 
 enum {
@@ -79,10 +80,10 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   ),
   [_MEDIA_AND_NAVIGATION_LAYER] = LAYOUT_60_ansi(
-    KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______,        _______,      _______, KC_TOG_IDLE, KC_AP_RGB_MOD, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI,  KC_PAUSE,
-       _______,    _______,    _______,      KC_UP,    _______, _______,        KC_MUTE,      KC_MPRV,     KC_MPLY,       KC_MNXT,       _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
-       _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______,        KC_HOME,      KC_PGDN,     KC_PGUP,        KC_END,       _______, _______, _______,
-       _______,    _______,    _______,    _______,    _______, _______,    KC_MINIMIZE,  KC_MAXIMIZE,     KC_VOLD,       KC_VOLU,       _______, _______,
+    KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______,        _______,      _______, KC_TOG_IDLE, KC_RGB_NEXT, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI,  KC_PAUSE,
+       _______,    _______,    _______,      KC_UP,    _______, _______,        KC_MUTE,      KC_MPRV,     KC_MPLY,     KC_MNXT,       _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
+       _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______,        KC_HOME,      KC_PGDN,     KC_PGUP,      KC_END,       _______, _______, _______,
+       _______,    _______,    _______,    _______,    _______, _______,    KC_MINIMIZE,  KC_MAXIMIZE,     KC_VOLD,     KC_VOLU,       _______, _______,
        _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), TG(_GAME_LAYER), _______
   ),
   [_GAME_LAYER] = LAYOUT_60_ansi(
@@ -229,6 +230,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_TOG_IDLE:
       if (record->event.pressed) {
         is_focus_mode_on = !is_focus_mode_on;
+      }
+      return true;
+    case KC_RGB_NEXT:
+      ap2_led_reset_foreground_color();
+      if (get_mods() & MOD_MASK_SHIFT) {
+          rgb_matrix_step_reverse();
+          return false;
+      } else {
+          rgb_matrix_step();
       }
       return true;
     default:
