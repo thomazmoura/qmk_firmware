@@ -1,0 +1,17 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/universal
+{
+	"name": "QMK CLI",
+	"image": "ghcr.io/qmk/qmk_cli",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+                "EditorConfig.EditorConfig",
+                "xaver.clang-format",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "bierner.github-markdown-preview",
+                "donjayamanne.git-extension-pack"
+			]
+		}
+	}
+}
