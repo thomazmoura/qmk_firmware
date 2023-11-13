@@ -12,6 +12,7 @@ enum anne_pro_layers {
   _MOUSE_LAYER,
   _MEDIA_AND_NAVIGATION_LAYER,
   _GAME_LAYER,
+  _TRAINING_LAYER,
 };
 
 typedef struct {
@@ -68,14 +69,14 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PAUSE,
     _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
     LT(_MEDIA_AND_NAVIGATION_LAYER, KC_0), _______, _______, _______, _______, _______, KC_BSPC, _______, _______,  KC_DEL, _______, _______, _______,
-    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
+    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), _______, _______
   ),
   [_MOUSE_LAYER] = LAYOUT_60_ansi(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______, _______, _______,
     _______, _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN2, _______, _______,
-    _______, _______, _______, _______, _______, _______, KC_BTN3, KC_BTN4, KC_BTN5, _______, _______, _______, 
+    _______, _______, _______, _______, _______, _______, KC_BTN3, KC_BTN4, KC_BTN5, _______, _______, _______,
     _______, _______, _______, KC_BTN1, _______, TG(_MOUSE_LAYER), _______, _______
 
   ),
@@ -84,14 +85,21 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______,    _______,    _______,      KC_UP,    _______, _______,        KC_MUTE,      KC_MPRV,     KC_MPLY,     KC_MNXT,       _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
        _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______,        KC_HOME,      KC_PGDN,     KC_PGUP,      KC_END,       _______, _______, _______,
        _______,    _______,    _______,    _______,    _______, _______,    KC_MINIMIZE,  KC_MAXIMIZE,     KC_VOLD,     KC_VOLU,       _______, _______,
-       _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), TG(_GAME_LAYER), _______
+       _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), TG(_GAME_LAYER), TG(_TRAINING_LAYER)
   ),
   [_GAME_LAYER] = LAYOUT_60_ansi(
                         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     LT(_FUNCTION_LAYER, KC_TAB), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, LT(_FUNCTION_LAYER, KC_BSLS),
                          KC_ESC, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_UP, 
+                        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_UP,
                         _______,   KC_NO, _______,  KC_SPC, TG(_GAME_LAYER),  KC_LEFT, KC_DOWN, KC_RGHT
+  ),
+  [_TRAINING_LAYER] = LAYOUT_60_ansi(
+            KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
+            KC_TAB,    KC_Q,    KC_W,  KC_E,  KC_R,  KC_T,      KC_Y,    KC_U,    KC_I,           KC_O,     KC_P,   KC_LBRC, KC_RBRC, KC_BSLS,
+  TD(ESC_TAP_DANCE),    KC_A,    KC_S,  KC_D,  KC_F,  KC_G,      KC_H,   KC_J,    KC_K,           KC_L,  KC_SCLN,   KC_QUOT,  KC_ENT,
+             KC_NO,    KC_Z,    KC_X,  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  KC_SLSH,     KC_NO,
+             KC_NO,   KC_NO,   KC_NO, LT(_CORRECTION_LAYER, KC_SPC),   KC_APP,   KC_NO, MO(_FUNCTION_LAYER), TG(_GAME_LAYER)
   ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
@@ -119,8 +127,9 @@ uint8_t function_profile[] = {0x00,0xFF,0x00};
 uint8_t navigation_profile[] = {0x00,0xFF,0xFF};
 uint8_t correction_profile[] = {0x00,0x00,0xFF};
 uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
-uint8_t mouse_profile[] = {0xAA,0xFF,0xFF};;
-uint8_t game_layer[] = {0x80,0xFF,0x99};;
+uint8_t mouse_profile[] = {0xAA,0xFF,0xFF};
+uint8_t game_layer[] = {0x80,0xFF,0x99};
+uint8_t training_layer[] = {0x99,0x00,0xFF};
 
 void matrix_init_user(void) {
 }
@@ -138,7 +147,7 @@ bool led_update_user(led_t leds) {
     } else {
         ap2_led_unset_sticky_all();
         is_caps_on = false;
-    } 
+    }
 
     return true;
 }
@@ -162,6 +171,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _GAME_LAYER:
       enable_profile_color(game_layer);
+      break;
+    case _TRAINING_LAYER:
+      enable_profile_color(training_layer);
       break;
     default:
       if(is_caps_on) {
