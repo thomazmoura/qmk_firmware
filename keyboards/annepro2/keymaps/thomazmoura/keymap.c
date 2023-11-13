@@ -32,7 +32,8 @@ enum {
 };
 
 enum custom_codes {
-  KC_MAXIMIZE = AP2_SAFE_RANGE,
+  AP2_SAFE_RANGE = KC_AP_RGB_MOD,
+  KC_MAXIMIZE,
   KC_MINIMIZE,
   KC_TOG_IDLE,
   KC_RGB_NEXT,
@@ -47,7 +48,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = LAYOUT_60_ansi(
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
             KC_TAB,    KC_Q,    KC_W,  KC_E,  KC_R,  KC_T,      KC_Y,    KC_U,    KC_I,           KC_O,     KC_P,   KC_LBRC, KC_RBRC, KC_BSLS,
-  TD(ESC_TAP_DANCE),    KC_A,    KC_S,  KC_D,  KC_F,  KC_G,      KC_H,    KC_J,    KC_K,           KC_L,  KC_SCLN,   KC_QUOT,  KC_ENT,
+  TD(ESC_TAP_DANCE),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_RALT, KC_J),    MT(MOD_RGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
            KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  KC_SLSH,   KC_RSFT,
            KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), KC_RGUI, MO(_FUNCTION_LAYER), KC_RCTL
   ),
@@ -108,13 +109,13 @@ const uint16_t keymaps_size = sizeof(keymaps);
 // Declare the functions to be used with your tap dance key(s)
 
 // Function associated with all tap dances
-uint8_t cur_dance(qk_tap_dance_state_t *state);
+uint8_t cur_dance(tap_dance_state_t *state);
 
 // Functions associated with individual tap dances
 void enable_profile_color(uint8_t * profile);
 void reset_profile_color(void);
-void esc_layer_finished(qk_tap_dance_state_t *state, void *user_data);
-void esc_layer_reset(qk_tap_dance_state_t *state, void *user_data);
+void esc_layer_finished(tap_dance_state_t *state, void *user_data);
+void esc_layer_reset(tap_dance_state_t *state, void *user_data);
 
 bool is_focus_mode_on = true;
 bool is_caps_on = false;
@@ -188,7 +189,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 // Determine the current tap dance state
-uint8_t cur_dance(qk_tap_dance_state_t *state) {
+uint8_t cur_dance(tap_dance_state_t *state) {
   if (state->count == 1) {
     if (!state->pressed) return SINGLE_TAP;
     else return SINGLE_HOLD;
@@ -259,7 +260,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 // Functions that control what our tap dance key does
-void esc_layer_finished(qk_tap_dance_state_t *state, void *user_data) {
+void esc_layer_finished(tap_dance_state_t *state, void *user_data) {
   esc_tap_state.state = cur_dance(state);
 
   switch (esc_tap_state.state) {
@@ -302,7 +303,7 @@ void esc_layer_finished(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void esc_layer_reset(qk_tap_dance_state_t *state, void *user_data) {
+void esc_layer_reset(tap_dance_state_t *state, void *user_data) {
   // If the key was held down and now is released then switch off the layer
   if (esc_tap_state.state == SINGLE_HOLD) {
     layer_off(_FUNCTION_LAYER);
@@ -317,7 +318,7 @@ void esc_layer_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 // Functions that control what our tap dance key does
-void grave_layer_finished(qk_tap_dance_state_t *state, void *user_data) {
+void grave_layer_finished(tap_dance_state_t *state, void *user_data) {
   grav_tap_state.state = cur_dance(state);
 
   switch (grav_tap_state.state) {
@@ -340,7 +341,7 @@ void grave_layer_finished(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void grave_layer_reset(qk_tap_dance_state_t *state, void *user_data) {
+void grave_layer_reset(tap_dance_state_t *state, void *user_data) {
   // If the key was held down and now is released then switch off the layer
   if (grav_tap_state.state == SINGLE_HOLD) {
     layer_off(_FUNCTION_LAYER);
@@ -352,7 +353,7 @@ void grave_layer_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 // Associate our tap dance key with its functionality
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
   [ESC_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, esc_layer_finished, esc_layer_reset),
   [GRV_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_layer_finished, grave_layer_reset)
 };
