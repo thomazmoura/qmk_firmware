@@ -6,13 +6,13 @@
 
 enum anne_pro_layers {
   _BASE_LAYER,
+  _TRAINING_LAYER,
   _FUNCTION_LAYER,
   _NUMPAD_LAYER,
   _CORRECTION_LAYER,
   _MOUSE_LAYER,
   _MEDIA_AND_NAVIGATION_LAYER,
   _GAME_LAYER,
-  _TRAINING_LAYER,
 };
 
 typedef struct {
