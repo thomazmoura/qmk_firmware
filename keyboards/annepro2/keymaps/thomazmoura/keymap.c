@@ -48,7 +48,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = LAYOUT_60_ansi(
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
             KC_TAB,    KC_Q,    KC_W,  KC_E,  KC_R,  KC_T,      KC_Y,    KC_U,    KC_I,           KC_O,     KC_P,   KC_LBRC, KC_RBRC, KC_BSLS,
-  TD(ESC_TAP_DANCE),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_RALT, KC_J),    MT(MOD_RGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
+  TD(ESC_TAP_DANCE),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_LALT, KC_J),    MT(MOD_RGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
            KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  KC_SLSH,   KC_RSFT,
            KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), KC_RGUI, MO(_FUNCTION_LAYER), KC_RCTL
   ),
@@ -96,11 +96,11 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         _______,   KC_NO, _______,  KC_SPC, TG(_GAME_LAYER),  KC_LEFT, KC_DOWN, KC_RGHT
   ),
   [_TRAINING_LAYER] = LAYOUT_60_ansi(
-            KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
-            KC_TAB,    KC_Q,    KC_W,  KC_E,  KC_R,  KC_T,      KC_Y,    KC_U,    KC_I,           KC_O,     KC_P,   KC_LBRC, KC_RBRC, KC_BSLS,
-  TD(ESC_TAP_DANCE),    KC_A,    KC_S,  KC_D,  KC_F,  KC_G,      KC_H,   KC_J,    KC_K,           KC_L,  KC_SCLN,   KC_QUOT,  KC_ENT,
-             KC_NO,    KC_Z,    KC_X,  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  KC_SLSH,     KC_NO,
-             KC_NO,   KC_NO,   KC_NO, LT(_CORRECTION_LAYER, KC_SPC),   KC_APP,   KC_NO, MO(_FUNCTION_LAYER), TG(_GAME_LAYER)
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,
+      KC_NO,   KC_NO,   KC_NO, KC_TRNS, KC_TRNS,   KC_NO, KC_TRNS, TG(_TRAINING_LAYER)
   ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
@@ -130,7 +130,7 @@ uint8_t correction_profile[] = {0x00,0x00,0xFF};
 uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
 uint8_t mouse_profile[] = {0xAA,0xFF,0xFF};
 uint8_t game_layer[] = {0x80,0xFF,0x99};
-uint8_t training_layer[] = {0x99,0x00,0xFF};
+uint8_t training_layer[] = {0x66,0x33,0xFF};
 
 void matrix_init_user(void) {
 }
