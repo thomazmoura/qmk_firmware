@@ -16,3 +16,4 @@
 
 #define IDLE_PROFILE_INDEX 0
 
+#define TAPPING_TERM_PER_KEY

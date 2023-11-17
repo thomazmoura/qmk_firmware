@@ -358,3 +358,26 @@ tap_dance_action_t tap_dance_actions[] = {
   [GRV_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_layer_finished, grave_layer_reset)
 };
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case MT(MOD_LCTL, KC_A):
+            return 150;
+        case MT(MOD_LSFT, KC_S):
+            return 150;
+        case MT(MOD_LGUI, KC_D):
+            return 150;
+        case MT(MOD_LALT, KC_F):
+            return 150;
+        case MT(MOD_LALT, KC_J):
+            return 150;
+        case MT(MOD_LGUI, KC_K):
+            return 150;
+        case MT(MOD_RSFT, KC_L):
+            return 150;
+        case MT(MOD_RCTL, KC_SCLN):
+            return 150;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
