@@ -358,7 +358,7 @@ tap_dance_action_t tap_dance_actions[] = {
   [GRV_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_layer_finished, grave_layer_reset)
 };
 
-uint16_t ctrl_tapping_term = 200;
+uint16_t ctrl_tapping_term = 225;
 uint16_t shift_tapping_term = 175;
 uint16_t alt_tapping_term = 175;
 uint16_t gui_tapping_term = 175;
