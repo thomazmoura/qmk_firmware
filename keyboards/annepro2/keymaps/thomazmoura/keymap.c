@@ -14,6 +14,8 @@ enum anne_pro_layers {
   _MEDIA_AND_NAVIGATION_LAYER,
   _GAME_LAYER,
   _SYMBOLS_LAYER,
+  _NUMBERS_LAYER,
+  _FUNCTION_KEYS_LAYER,
 };
 
 typedef struct {
@@ -48,7 +50,7 @@ enum {
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = LAYOUT_60_ansi(
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
-            KC_TAB,    KC_Q,    KC_W,  LT(_SYMBOLS_LAYER, KC_E),  KC_R,  KC_T,      KC_Y,    KC_U,    LT(_SYMBOLS_LAYER, KC_I),           KC_O,     KC_P,   KC_LBRC, KC_RBRC, KC_BSLS,
+            KC_TAB,    LT(_FUNCTION_KEYS_LAYER, KC_Q),    LT(_NUMBERS_LAYER, KC_W),  LT(_SYMBOLS_LAYER, KC_E), KC_R, KC_T, KC_Y, KC_U, LT(_SYMBOLS_LAYER, KC_I), LT(_NUMBERS_LAYER, KC_O), LT(_FUNCTION_KEYS_LAYER, KC_P), KC_LBRC, KC_RBRC, KC_BSLS,
   TD(ESC_TAP_DANCE),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_LALT, KC_J),    MT(MOD_LGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
            KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  KC_SLSH,   KC_RSFT,
            KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), KC_RGUI, MO(_FUNCTION_LAYER), KC_RCTL
@@ -110,6 +112,20 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
+  [_NUMBERS_LAYER] = LAYOUT_60_ansi(
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_0,    KC_4,    KC_5,    KC_6, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_1,    KC_2,    KC_3, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  ),
+  [_FUNCTION_KEYS_LAYER] = LAYOUT_60_ansi(
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_CAPS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_DEL,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_F4,   KC_F5,   KC_F6, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_F1,   KC_F2,   KC_F3, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
 
@@ -139,7 +155,7 @@ uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
 uint8_t mouse_profile[] = {0xAA,0xFF,0xFF};
 uint8_t game_layer[] = {0x80,0xFF,0x99};
 uint8_t training_layer[] = {0x66,0x33,0xFF};
-uint8_t symbols_layer[] = {0xFF,0xFF,0x00};
+uint8_t symbols_layer[] = {0xFF,0x00,0xFF};
 
 void matrix_init_user(void) {
 }
@@ -187,6 +203,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _SYMBOLS_LAYER:
       enable_profile_color(symbols_layer);
+      break;
+    case _NUMBERS_LAYER:
+      enable_profile_color(numpad_profile);
+      break;
+    case _FUNCTION_KEYS_LAYER:
+      enable_profile_color(function_profile);
       break;
     default:
       if(is_caps_on) {
