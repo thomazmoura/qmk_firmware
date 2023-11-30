@@ -10,12 +10,13 @@ enum anne_pro_layers {
   _FUNCTION_LAYER,
   _NUMPAD_LAYER,
   _MOUSE_LAYER,
-  _MEDIA_AND_NAVIGATION_LAYER,
   _GAME_LAYER,
   _SYMBOLS_LAYER,
+  _BRACKETS_LAYER,
   _NUMBERS_LAYER,
   _FUNCTION_KEYS_LAYER,
   _CORRECTION_LAYER,
+  _MEDIA_AND_NAVIGATION_LAYER,
 };
 
 typedef struct {
@@ -52,7 +53,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
             KC_TAB,    LT(_FUNCTION_KEYS_LAYER, KC_Q),    LT(_NUMBERS_LAYER, KC_W),  LT(_SYMBOLS_LAYER, KC_E), LT(_SYMBOLS_LAYER, KC_R), KC_T, KC_Y, LT(_SYMBOLS_LAYER, KC_U), LT(_SYMBOLS_LAYER, KC_I), LT(_NUMBERS_LAYER, KC_O), LT(_FUNCTION_KEYS_LAYER, KC_P), KC_LBRC, KC_RBRC, KC_BSLS,
   TD(ESC_TAP_DANCE),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_LALT, KC_J),    MT(MOD_LGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
-           KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  KC_SLSH,   KC_RSFT,
+           KC_LSFT,    KC_Z,    LT(_BRACKETS_LAYER, KC_X),  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  KC_SLSH,   KC_RSFT,
            KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), KC_RGUI, MO(_FUNCTION_LAYER), KC_RCTL
   ),
   [_FUNCTION_LAYER] = LAYOUT_60_ansi(
@@ -76,13 +77,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, KC_BTN3, KC_BTN4, KC_BTN5, _______, _______, _______,
     _______, _______, _______, KC_BTN1, _______, TG(_MOUSE_LAYER), _______, _______
 
-  ),
-  [_MEDIA_AND_NAVIGATION_LAYER] = LAYOUT_60_ansi(
-    KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______,        _______,      _______, KC_TOG_IDLE, KC_RGB_NEXT, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI,  KC_PAUSE,
-       _______,    _______,    _______,      KC_UP,    _______, _______,        KC_MUTE,      KC_MPRV,     KC_MPLY,     KC_MNXT,       _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
-       _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______,        KC_HOME,      KC_PGDN,     KC_PGUP,      KC_END,       _______, _______, _______,
-       _______,    _______,    _______,    _______,    _______, _______,    KC_MINIMIZE,  KC_MAXIMIZE,     KC_VOLD,     KC_VOLU,       _______, _______,
-       _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), TG(_GAME_LAYER), TG(_TRAINING_LAYER)
   ),
   [_GAME_LAYER] = LAYOUT_60_ansi(
                         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -119,12 +113,26 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,   KC_F1,   KC_F2,   KC_F3, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
+  [_BRACKETS_LAYER] = LAYOUT_60_ansi(
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, _______, _______, _______, _______, _______, _______, _______,   S(KC_9),   S(KC_0), _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______,S(KC_LBRC),S(KC_RBRC), _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______,   KC_LBRC,   KC_RBRC, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______
+  ),
   [_CORRECTION_LAYER] = LAYOUT_60_ansi(
     _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PAUSE,
     _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
     LT(_MEDIA_AND_NAVIGATION_LAYER, KC_0), _______, _______, _______, _______, _______, KC_BSPC, _______, _______,  KC_DEL, _______, _______, _______,
     _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), _______, _______
+  ),
+  [_MEDIA_AND_NAVIGATION_LAYER] = LAYOUT_60_ansi(
+    KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______,        _______,      _______, KC_TOG_IDLE, KC_RGB_NEXT, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI,  KC_PAUSE,
+       _______,    _______,    _______,      KC_UP,    _______, _______,        KC_MUTE,      KC_MPRV,     KC_MPLY,     KC_MNXT,       _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
+       _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______,        KC_HOME,      KC_PGDN,     KC_PGUP,      KC_END,       _______, _______, _______,
+       _______,    _______,    _______,    _______,    _______, _______,    KC_MINIMIZE,  KC_MAXIMIZE,     KC_VOLD,     KC_VOLU,       _______, _______,
+       _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), TG(_GAME_LAYER), TG(_TRAINING_LAYER)
   ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
@@ -202,6 +210,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       enable_profile_color(training_layer);
       break;
     case _SYMBOLS_LAYER:
+      enable_profile_color(symbols_layer);
+      break;
+    case _BRACKETS_LAYER:
       enable_profile_color(symbols_layer);
       break;
     case _NUMBERS_LAYER:
