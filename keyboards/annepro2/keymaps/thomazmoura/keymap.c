@@ -9,13 +9,13 @@ enum anne_pro_layers {
   _TRAINING_LAYER,
   _FUNCTION_LAYER,
   _NUMPAD_LAYER,
-  _CORRECTION_LAYER,
   _MOUSE_LAYER,
   _MEDIA_AND_NAVIGATION_LAYER,
   _GAME_LAYER,
   _SYMBOLS_LAYER,
   _NUMBERS_LAYER,
   _FUNCTION_KEYS_LAYER,
+  _CORRECTION_LAYER,
 };
 
 typedef struct {
@@ -69,13 +69,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3,    KC_SLSH,  _______,
     _______, _______, _______, LT(_CORRECTION_LAYER, KC_SPC), TG(_NUMPAD_LAYER), _______, _______, _______
   ),
-  [_CORRECTION_LAYER] = LAYOUT_60_ansi(
-    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PAUSE,
-    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
-    LT(_MEDIA_AND_NAVIGATION_LAYER, KC_0), _______, _______, _______, _______, _______, KC_BSPC, _______, _______,  KC_DEL, _______, _______, _______,
-    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), _______, _______
-  ),
   [_MOUSE_LAYER] = LAYOUT_60_ansi(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______, _______, _______,
@@ -125,6 +118,13 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_F4,   KC_F5,   KC_F6,  KC_F11, KC_F12, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_F1,   KC_F2,   KC_F3, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  ),
+  [_CORRECTION_LAYER] = LAYOUT_60_ansi(
+    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PAUSE,
+    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
+    LT(_MEDIA_AND_NAVIGATION_LAYER, KC_0), _______, _______, _______, _______, _______, KC_BSPC, _______, _______,  KC_DEL, _______, _______, _______,
+    _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), _______, _______
   ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
