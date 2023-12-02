@@ -100,24 +100,24 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_NUMBERS_LAYER] = LAYOUT_60_ansi(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL, _______,
-    _______, _______, _______, _______, _______, _______,    KC_0,    KC_4,    KC_5,    KC_6, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3, _______, _______,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,       KC_0, KC_MINS,  KC_EQL, _______,
+    _______, _______, _______, _______, _______, _______,    KC_0,    KC_4,    KC_5,    KC_6, S(KC_SCLN),  KC_DOT, _______,
+    _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3,    KC_SLSH, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_FUNCTION_KEYS_LAYER] = LAYOUT_60_ansi(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     KC_CAPS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-    _______, _______, _______, _______, _______, _______, _______,   KC_F4,   KC_F5,   KC_F6,  KC_F11, KC_F12, _______,
+    _______, _______, _______, _______, _______, _______, _______,   KC_F4,   KC_F5,   KC_F6,  KC_F11,  KC_F12, _______,
     _______, _______, _______, _______, _______, _______, _______,   KC_F1,   KC_F2,   KC_F3, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_BRACKETS_LAYER] = LAYOUT_60_ansi(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______, _______, _______, _______, _______, _______, _______, _______,   S(KC_9),   S(KC_0), _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______,S(KC_LBRC),S(KC_RBRC), _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______,   KC_LBRC,   KC_RBRC, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______,    S(KC_9),   S(KC_0), _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_LBRC, S(KC_LBRC),S(KC_RBRC), KC_RBRC, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______,    KC_LBRC,   KC_RBRC, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_CORRECTION_LAYER] = LAYOUT_60_ansi(
