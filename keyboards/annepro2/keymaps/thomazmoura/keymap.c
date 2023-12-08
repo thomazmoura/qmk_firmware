@@ -95,8 +95,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SYMBOLS_LAYER] = LAYOUT_60_ansi(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
      KC_GRV, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_MINS,  KC_EQL, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, MT(MOD_RCTL, KC_MINS), KC_EQL, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, S(KC_4), S(KC_5), S(KC_6), MT(MOD_RCTL, KC_MINS), KC_EQL, _______,
+    _______, _______, _______, _______, _______, _______, _______, S(KC_1), S(KC_2), S(KC_3), KC_BSLS, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_NUMBERS_LAYER] = LAYOUT_60_ansi(
@@ -114,10 +114,10 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_BRACKETS_LAYER] = LAYOUT_60_ansi(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______, _______, _______, _______, _______, _______, _______, _______,    S(KC_9),   S(KC_0), _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, KC_LBRC, S(KC_LBRC),S(KC_RBRC), KC_RBRC, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______,    KC_LBRC,   KC_RBRC, _______, _______,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, _______, _______, _______, _______, _______, _______, _______,    S(KC_9),    S(KC_0), _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_LBRC, S(KC_LBRC), S(KC_RBRC), KC_RBRC, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, S(KC_COMM),  S(KC_DOT), _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_CORRECTION_LAYER] = LAYOUT_60_ansi(
