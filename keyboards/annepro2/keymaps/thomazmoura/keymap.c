@@ -405,8 +405,8 @@ tap_dance_action_t tap_dance_actions[] = {
 
 uint16_t ctrl_tapping_term = 225;
 uint16_t shift_tapping_term = 175;
-uint16_t alt_tapping_term = 175;
-uint16_t gui_tapping_term = 175;
+uint16_t alt_tapping_term = 225;
+uint16_t gui_tapping_term = 225;
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MT(MOD_LCTL, KC_A):
