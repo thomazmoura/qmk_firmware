@@ -403,12 +403,30 @@ tap_dance_action_t tap_dance_actions[] = {
   [GRV_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_layer_finished, grave_layer_reset)
 };
 
+uint16_t symbols_tapping_term = 275;
+uint16_t numbers_tapping_term = 225;
 uint16_t ctrl_tapping_term = 225;
 uint16_t shift_tapping_term = 175;
 uint16_t alt_tapping_term = 225;
 uint16_t gui_tapping_term = 225;
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case LT(_NUMBERS_LAYER, KC_Q):
+            return numbers_tapping_term;
+        case LT(_NUMBERS_LAYER, KC_W):
+            return numbers_tapping_term;
+        case LT(_SYMBOLS_LAYER, KC_E):
+            return symbols_tapping_term;
+        case LT(_SYMBOLS_LAYER, KC_R):
+            return symbols_tapping_term;
+        case LT(_SYMBOLS_LAYER, KC_U):
+            return symbols_tapping_term;
+        case LT(_SYMBOLS_LAYER, KC_I):
+            return symbols_tapping_term;
+        case LT(_NUMBERS_LAYER, KC_O):
+            return numbers_tapping_term;
+        case LT(_NUMBERS_LAYER, KC_P):
+            return numbers_tapping_term;
         case MT(MOD_LCTL, KC_A):
             return ctrl_tapping_term;
         case MT(MOD_LSFT, KC_S):
