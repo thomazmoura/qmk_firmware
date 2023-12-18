@@ -51,7 +51,7 @@ enum {
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = LAYOUT_60_ansi(
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
-            KC_TAB,    LT(_NUMBERS_LAYER, KC_Q),    LT(_NUMBERS_LAYER, KC_W),  LT(_SYMBOLS_LAYER, KC_E), LT(_SYMBOLS_LAYER, KC_R), KC_T, KC_Y, LT(_SYMBOLS_LAYER, KC_U), LT(_SYMBOLS_LAYER, KC_I), LT(_NUMBERS_LAYER, KC_O), LT(_NUMBERS_LAYER, KC_P), KC_LBRC, KC_RBRC, KC_BSLS,
+            KC_TAB,    KC_Q,    LT(_NUMBERS_LAYER, KC_W),  LT(_SYMBOLS_LAYER, KC_E), KC_R, KC_T, KC_Y, KC_U, LT(_SYMBOLS_LAYER, KC_I), LT(_NUMBERS_LAYER, KC_O), KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
   TD(ESC_TAP_DANCE),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_LALT, KC_J),    MT(MOD_LGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
            KC_LSFT,    LT(_FUNCTION_KEYS_LAYER, KC_Z),    LT(_BRACKETS_LAYER, KC_X),  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  LT(_FUNCTION_KEYS_LAYER, KC_SLSH),   KC_RSFT,
            KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), KC_RGUI, MO(_FUNCTION_LAYER), KC_RCTL
@@ -406,29 +406,20 @@ tap_dance_action_t tap_dance_actions[] = {
 uint16_t function_tapping_term = 300;
 uint16_t symbols_tapping_term = 300;
 uint16_t numbers_tapping_term = 250;
-uint16_t ctrl_tapping_term = 225;
+uint16_t ctrl_tapping_term = 300;
 uint16_t shift_tapping_term = 175;
-uint16_t alt_tapping_term = 225;
-uint16_t gui_tapping_term = 225;
+uint16_t alt_tapping_term = 300;
+uint16_t gui_tapping_term = 300;
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(_NUMBERS_LAYER, KC_Q):
-            return numbers_tapping_term;
         case LT(_NUMBERS_LAYER, KC_W):
             return numbers_tapping_term;
         case LT(_SYMBOLS_LAYER, KC_E):
-            return symbols_tapping_term;
-        case LT(_SYMBOLS_LAYER, KC_R):
-            return symbols_tapping_term;
-        case LT(_SYMBOLS_LAYER, KC_U):
             return symbols_tapping_term;
         case LT(_SYMBOLS_LAYER, KC_I):
             return symbols_tapping_term;
         case LT(_NUMBERS_LAYER, KC_O):
             return numbers_tapping_term;
-        case LT(_NUMBERS_LAYER, KC_P):
-            return numbers_tapping_term;
-
         case LT(_FUNCTION_KEYS_LAYER, KC_Z):
             return function_tapping_term;
         case LT(_BRACKETS_LAYER, KC_X):
