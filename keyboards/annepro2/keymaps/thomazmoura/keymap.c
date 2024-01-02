@@ -13,7 +13,6 @@ enum anne_pro_layers {
   _GAME_LAYER,
   _SYMBOLS_LAYER,
   _BRACKETS_LAYER,
-  _NUMBERS_LAYER,
   _FUNCTION_KEYS_LAYER,
   _CORRECTION_LAYER,
   _MEDIA_AND_NAVIGATION_LAYER,
@@ -51,7 +50,7 @@ enum {
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = LAYOUT_60_ansi(
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
-            KC_TAB,    KC_Q,    LT(_NUMBERS_LAYER, KC_W),  LT(_SYMBOLS_LAYER, KC_E), KC_R, KC_T, KC_Y, KC_U, LT(_SYMBOLS_LAYER, KC_I), LT(_NUMBERS_LAYER, KC_O), KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
+            KC_TAB,    KC_Q,    LT(_NUMPAD_LAYER, KC_W),  LT(_SYMBOLS_LAYER, KC_E), KC_R, KC_T, KC_Y, KC_U, LT(_SYMBOLS_LAYER, KC_I), LT(_NUMPAD_LAYER, KC_O), KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
   TD(ESC_TAP_DANCE),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_LALT, KC_J),    MT(MOD_LGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
            KC_LSFT,    LT(_FUNCTION_KEYS_LAYER, KC_Z),    LT(_BRACKETS_LAYER, KC_X),  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  LT(_FUNCTION_KEYS_LAYER, KC_SLSH),   KC_RSFT,
            KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), KC_RGUI, MO(_FUNCTION_LAYER), KC_RCTL
@@ -65,8 +64,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_NUMPAD_LAYER] = LAYOUT_60_ansi(
     _______, _______, _______, _______, _______, _______, _______, _______, KC_PAST, _______,    KC_PSLS,  KC_PMNS, KC_PPLS, _______,
-    _______, _______, _______,   KC_UP, _______, _______, _______,    KC_7,    KC_8,    KC_9,    KC_COMM,  _______, _______, _______,
-    _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,    KC_0,    KC_4,    KC_5,    KC_6, S(KC_SCLN),   KC_DOT, _______,
+    _______,    KC_1,    KC_2,   KC_UP,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_COMM,  _______, _______, _______,
+    _______,    KC_3, KC_LEFT, KC_DOWN, KC_RGHT, _______,    KC_0,    KC_4,    KC_5,    KC_6, S(KC_SCLN),   KC_DOT, _______,
     _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3,    KC_SLSH,  _______,
     _______, _______, _______, LT(_CORRECTION_LAYER, KC_SPC), TG(_NUMPAD_LAYER), _______, _______, _______
   ),
@@ -97,13 +96,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_GRV, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_MINS,  KC_EQL, _______,
     _______, _______, _______, _______, _______, _______, _______, S(KC_4), S(KC_5), S(KC_6), MT(MOD_RCTL, KC_MINS), KC_EQL, _______,
     _______, _______, _______, _______, _______, _______, _______, S(KC_1), S(KC_2), S(KC_3), KC_BSLS, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______
-  ),
-  [_NUMBERS_LAYER] = LAYOUT_60_ansi(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,       KC_0, KC_MINS,  KC_EQL, _______,
-    _______, _______, _______, _______, _______, _______,    KC_0,    KC_4,    KC_5,    KC_6, S(KC_SCLN),  KC_DOT, _______,
-    _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3,    KC_SLSH, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
   [_FUNCTION_KEYS_LAYER] = LAYOUT_60_ansi(
@@ -214,9 +206,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _BRACKETS_LAYER:
       enable_profile_color(symbols_layer);
-      break;
-    case _NUMBERS_LAYER:
-      enable_profile_color(numpad_profile);
       break;
     case _FUNCTION_KEYS_LAYER:
       enable_profile_color(function_profile);
@@ -412,13 +401,13 @@ uint16_t alt_tapping_term = 300;
 uint16_t gui_tapping_term = 300;
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(_NUMBERS_LAYER, KC_W):
+        case LT(_NUMPAD_LAYER, KC_W):
             return numbers_tapping_term;
         case LT(_SYMBOLS_LAYER, KC_E):
             return symbols_tapping_term;
         case LT(_SYMBOLS_LAYER, KC_I):
             return symbols_tapping_term;
-        case LT(_NUMBERS_LAYER, KC_O):
+        case LT(_NUMPAD_LAYER, KC_O):
             return numbers_tapping_term;
         case LT(_FUNCTION_KEYS_LAYER, KC_Z):
             return function_tapping_term;
