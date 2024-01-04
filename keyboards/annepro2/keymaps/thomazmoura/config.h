@@ -6,6 +6,8 @@
 #undef TAPPING_TOGGLE
 #define TAPPING_TOGGLE 2
 
+#undef PERMISSIVE_HOLD
+
 #define MK_3_SPEED
 #define MK_MOMENTARY_ACCEL
 
