@@ -392,14 +392,15 @@ tap_dance_action_t tap_dance_actions[] = {
   [GRV_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_layer_finished, grave_layer_reset)
 };
 
-uint16_t function_tapping_term = 300;
-uint16_t symbols_tapping_term = 200;
-uint16_t numbers_tapping_term = 200;
-uint16_t left_ctrl_tapping_term = 250;
-uint16_t right_ctrl_tapping_term = 225;
+uint16_t space_tapping_term = 200;
+uint16_t function_tapping_term = 225;
+uint16_t symbols_tapping_term = 175;
+uint16_t numbers_tapping_term = 175;
+uint16_t left_ctrl_tapping_term = 200;
+uint16_t right_ctrl_tapping_term = 175;
 uint16_t shift_tapping_term = 175;
-uint16_t alt_tapping_term = 300;
-uint16_t gui_tapping_term = 300;
+uint16_t alt_tapping_term = 200;
+uint16_t gui_tapping_term = 200;
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(_NUMPAD_LAYER, KC_W):
@@ -431,6 +432,10 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return shift_tapping_term;
         case MT(MOD_RCTL, KC_SCLN):
             return right_ctrl_tapping_term;
+
+        case LT(_CORRECTION_LAYER, KC_SPC):
+            return space_tapping_term;
+
         default:
             return TAPPING_TERM;
     }
