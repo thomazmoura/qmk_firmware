@@ -394,8 +394,8 @@ tap_dance_action_t tap_dance_actions[] = {
 
 uint16_t space_tapping_term = 200;
 uint16_t function_tapping_term = 225;
-uint16_t symbols_tapping_term = 175;
-uint16_t numbers_tapping_term = 175;
+uint16_t symbols_tapping_term = 200;
+uint16_t numbers_tapping_term = 200;
 uint16_t left_ctrl_tapping_term = 200;
 uint16_t right_ctrl_tapping_term = 175;
 uint16_t shift_tapping_term = 175;
