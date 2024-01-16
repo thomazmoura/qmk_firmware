@@ -79,8 +79,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_GAME_LAYER] = LAYOUT_60_ansi(
                         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    LT(_FUNCTION_LAYER, KC_TAB), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, LT(_FUNCTION_LAYER, KC_BSLS),
-                         KC_ESC, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    LT(_FUNCTION_LAYER, KC_TAB),    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC, KC_RBRC, LT(_FUNCTION_LAYER, KC_BSLS),
+                         KC_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,  KC_ENT,
                         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_UP,
                         _______, XXXXXXX, _______,  KC_SPC, TG(_GAME_LAYER),  KC_LEFT, KC_DOWN, KC_RGHT
   ),
