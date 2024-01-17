@@ -392,7 +392,7 @@ tap_dance_action_t tap_dance_actions[] = {
   [GRV_TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, grave_layer_finished, grave_layer_reset)
 };
 
-uint16_t space_tapping_term = 200;
+uint16_t space_tapping_term = 150;
 uint16_t function_tapping_term = 225;
 uint16_t symbols_tapping_term = 200;
 uint16_t numbers_tapping_term = 200;
