@@ -243,9 +243,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM grave_combo[] = {LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};
 const uint16_t PROGMEM tilt_combo[] = {MT(MOD_RSFT, KC_L), LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};
+const uint16_t PROGMEM ctrl_correction_combo[] = {MT(MOD_RCTL, KC_SCLN), LT(_CORRECTION_LAYER, KC_SPC), COMBO_END};
 combo_t key_combos[] = {
     COMBO(grave_combo, KC_GRV),
     COMBO(tilt_combo, S(KC_GRV)),
+    COMBO(ctrl_correction_combo, LM(_CORRECTION_LAYER, MOD_LCTL)),
 };
 
 uint16_t space_tapping_term = 150;
