@@ -31,6 +31,15 @@ enum custom_codes {
   KC_RGB_NEXT,
 };
 
+enum combos {
+    GRAVE_COMBO,
+    TILT_COMBO,
+    SHIFT_SYMBOL_COMBO,
+    CTRL_CORRECTION_COMBO,
+    CTRL_BACKSPACE_COMBO,
+    NAVIGATION_COMBO,
+};
+
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = LAYOUT_60_ansi(
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
@@ -77,8 +86,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SYMBOLS_LAYER] = LAYOUT_60_ansi(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-     KC_GRV, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_MINS,  KC_EQL, _______,
-    _______, _______, _______, _______, _______, _______, _______, S(KC_4), S(KC_5), S(KC_6), MT(MOD_RCTL, KC_MINS), KC_EQL, _______,
+    XXXXXXX, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_MINS,  KC_EQL, _______,
+    _______,  KC_GRV, _______, _______, _______, _______, _______, S(KC_4), S(KC_5), S(KC_6), MT(MOD_RCTL, KC_MINS), KC_EQL, _______,
     _______, _______, _______, _______, _______, _______, _______, S(KC_1), S(KC_2), S(KC_3), KC_BSLS, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
@@ -243,11 +252,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM grave_combo[] = {LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};
 const uint16_t PROGMEM tilt_combo[] = {MT(MOD_RSFT, KC_L), LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};
+const uint16_t PROGMEM shift_symbol_combo[] = {MT(MOD_RSFT, KC_L), LT(_SYMBOLS_LAYER, KC_I), COMBO_END};
 const uint16_t PROGMEM ctrl_correction_combo[] = {MT(MOD_RCTL, KC_SCLN), LT(_CORRECTION_LAYER, KC_SPC), COMBO_END};
+const uint16_t PROGMEM navigation_combo[] = {LT(_FUNCTION_LAYER, KC_ESC), LT(_CORRECTION_LAYER, KC_SPC), COMBO_END};
 combo_t key_combos[] = {
-    COMBO(grave_combo, KC_GRV),
-    COMBO(tilt_combo, S(KC_GRV)),
-    COMBO(ctrl_correction_combo, LM(_CORRECTION_LAYER, MOD_LCTL)),
+    [GRAVE_COMBO] = COMBO(grave_combo, KC_GRV),
+    [TILT_COMBO] = COMBO(tilt_combo, S(KC_GRV)),
+    [SHIFT_SYMBOL_COMBO] = COMBO(shift_symbol_combo, LM(_SYMBOLS_LAYER, MOD_LSFT)),
+    [CTRL_CORRECTION_COMBO] = COMBO(ctrl_correction_combo, LM(_CORRECTION_LAYER, MOD_LCTL)),
+    [NAVIGATION_COMBO] = COMBO(navigation_combo, MO(_MEDIA_AND_NAVIGATION_LAYER)),
 };
 
 uint16_t space_tapping_term = 150;
@@ -297,5 +310,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         default:
             return TAPPING_TERM;
     }
+}
+
+
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    switch (index) {
+        case SHIFT_SYMBOL_COMBO:
+            return 35;
+    }
+
+    return COMBO_TERM;
 }
 
