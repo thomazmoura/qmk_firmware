@@ -3,14 +3,15 @@
 #include "annepro2.h"
 #include "ap2_led.h"
 #include "config.h"
+#include "keymap_steno.h"
 
 enum anne_pro_layers {
   _BASE_LAYER,
   _TRAINING_LAYER,
   _FUNCTION_LAYER,
   _NUMPAD_LAYER,
-  _MOUSE_LAYER,
   _GAME_LAYER,
+  _STENO_LAYER,
   _SYMBOLS_LAYER,
   _BRACKETS_LAYER,
   _FUNCTION_KEYS_LAYER,
@@ -31,14 +32,14 @@ enum custom_codes {
   KC_RGB_NEXT,
 };
 
-enum combos {
-    GRAVE_COMBO,
-    TILT_COMBO,
-    SHIFT_SYMBOL_COMBO,
-    CTRL_CORRECTION_COMBO,
-    CTRL_BACKSPACE_COMBO,
-    NAVIGATION_COMBO,
-};
+/*enum combos {*/
+    /*GRAVE_COMBO,*/
+    /*TILT_COMBO,*/
+    /*SHIFT_SYMBOL_COMBO,*/
+    /*CTRL_CORRECTION_COMBO,*/
+    /*CTRL_BACKSPACE_COMBO,*/
+    /*NAVIGATION_COMBO,*/
+/*};*/
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = LAYOUT_60_ansi(
@@ -62,19 +63,18 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3,    KC_SLSH,  _______,
     _______, _______, _______, LT(_CORRECTION_LAYER, KC_SPC), TG(_NUMPAD_LAYER), _______, _______, _______
   ),
-  [_MOUSE_LAYER] = LAYOUT_60_ansi(
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______, _______, _______,
-    _______, _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN2, _______, _______,
-    _______, _______, _______, _______, _______, _______, KC_BTN3, KC_BTN4, KC_BTN5, _______, _______, _______,
-    _______, _______, _______, KC_BTN1, _______, TG(_MOUSE_LAYER), _______, _______
-
-  ),
   [_GAME_LAYER] = LAYOUT_60_ansi(
                         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     LT(_FUNCTION_LAYER, KC_TAB),    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC, KC_RBRC, LT(_FUNCTION_LAYER, KC_BSLS),
                          KC_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,  KC_ENT,
                         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_UP,
+                        _______, XXXXXXX, _______,  KC_SPC, TG(_GAME_LAYER),  KC_LEFT, KC_DOWN, KC_RGHT
+  ),
+  [_STENO_LAYER] = LAYOUT_60_ansi(
+               TG(_STENO_LAYER), _______, _______, _______, _______, _______, _______, _______, _______, STN_FN, STN_RES1, STN_RES2, STN_PWR, KC_BSPC,
+    LT(_FUNCTION_LAYER, KC_TAB),  STN_S1,  STN_TL,  STN_PL,  STN_HL,    KC_T,    KC_Y,  STN_FR,  STN_PR,  STN_LR,  STN_TR,  STN_DR, KC_RBRC, LT(_FUNCTION_LAYER, KC_BSLS),
+                         KC_ESC,  STN_S2,  STN_KL,  STN_WL,  STN_RL,    KC_G,    KC_H,  STN_RR,  STN_BR,  STN_GR,  STN_SR,  STN_ZR,  KC_ENT,
+                        _______, _______, _______,   STN_A,   STN_O,   STN_E,   STN_U, _______, _______, _______, _______,   KC_UP,
                         _______, XXXXXXX, _______,  KC_SPC, TG(_GAME_LAYER),  KC_LEFT, KC_DOWN, KC_RGHT
   ),
   [_TRAINING_LAYER] = LAYOUT_60_ansi(
@@ -110,14 +110,14 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,
     LT(_MEDIA_AND_NAVIGATION_LAYER, KC_0), _______, _______, _______, _______, _______, KC_BSPC, _______, _______,  KC_DEL, _______, _______, _______,
     _______,                               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), _______, _______
+    _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), _______, _______, _______
   ),
   [_MEDIA_AND_NAVIGATION_LAYER] = LAYOUT_60_ansi(
-    KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______,        _______,      _______, KC_TOG_IDLE, KC_RGB_NEXT, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI,  KC_PAUSE,
-       _______,    _______,    _______,      KC_UP,    _______, _______,        KC_MUTE,      KC_MPRV,     KC_MPLY,     KC_MNXT,       _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
-       _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______,        KC_HOME,      KC_PGDN,     KC_PGUP,      KC_END,       _______, _______, _______,
-       _______,    _______,    _______,    _______,    _______, _______,    KC_MINIMIZE,  KC_MAXIMIZE,     KC_VOLD,     KC_VOLU,       _______, _______,
-       _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), TG(_MOUSE_LAYER), TG(_GAME_LAYER), TG(_TRAINING_LAYER)
+      KC_AP2_USB, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, _______,        _______,      _______, KC_TOG_IDLE, KC_RGB_NEXT, KC_AP_RGB_TOG, KC_AP_RGB_VAD, KC_AP_RGB_VAI,  KC_PAUSE,
+TG(_STENO_LAYER),    _______,    _______,      KC_UP,    _______, _______,        KC_MUTE,      KC_MPRV,     KC_MPLY,     KC_MNXT,       _______, KC_BRID, KC_BRIU, KC_AP2_BT_UNPAIR,
+         _______,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT, _______,        KC_HOME,      KC_PGDN,     KC_PGUP,      KC_END,       _______, _______, _______,
+         _______,    _______,    _______,    _______,    _______, _______,    KC_MINIMIZE,  KC_MAXIMIZE,     KC_VOLD,     KC_VOLU,       _______, _______,
+         _______,    _______,    _______,    _______, TG(_NUMPAD_LAYER), _______, TG(_GAME_LAYER), TG(_TRAINING_LAYER)
   ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
@@ -137,10 +137,10 @@ uint8_t function_profile[] = {0x00,0xFF,0x00};
 uint8_t navigation_profile[] = {0x00,0xFF,0xFF};
 uint8_t correction_profile[] = {0x00,0x00,0xFF};
 uint8_t numpad_profile[] = {0xFF,0xDD,0x00};
-uint8_t mouse_profile[] = {0xAA,0xFF,0xFF};
 uint8_t game_layer[] = {0x80,0xFF,0x99};
 uint8_t training_layer[] = {0x66,0x33,0xFF};
 uint8_t symbols_layer[] = {0xFF,0x00,0xFF};
+uint8_t steno_profile[] = {0xAA,0xFF,0xFF};
 
 void matrix_init_user(void) {
 }
@@ -171,9 +171,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case _NUMPAD_LAYER:
       enable_profile_color(numpad_profile);
       break;
-    case _MOUSE_LAYER:
-      enable_profile_color(mouse_profile);
-      break;
     case _MEDIA_AND_NAVIGATION_LAYER:
       enable_profile_color(navigation_profile);
       break;
@@ -194,6 +191,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _FUNCTION_KEYS_LAYER:
       enable_profile_color(function_profile);
+      break;
+    case _STENO_LAYER:
+      enable_profile_color(steno_profile);
       break;
     default:
       if(is_caps_on) {
@@ -250,18 +250,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 }
 
-const uint16_t PROGMEM grave_combo[] = {LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};
-const uint16_t PROGMEM tilt_combo[] = {MT(MOD_RSFT, KC_L), LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};
-const uint16_t PROGMEM shift_symbol_combo[] = {MT(MOD_RSFT, KC_L), LT(_SYMBOLS_LAYER, KC_I), COMBO_END};
-const uint16_t PROGMEM ctrl_correction_combo[] = {MT(MOD_RCTL, KC_SCLN), LT(_CORRECTION_LAYER, KC_SPC), COMBO_END};
-const uint16_t PROGMEM navigation_combo[] = {LT(_FUNCTION_LAYER, KC_ESC), LT(_CORRECTION_LAYER, KC_SPC), COMBO_END};
-combo_t key_combos[] = {
-    [GRAVE_COMBO] = COMBO(grave_combo, KC_GRV),
-    [TILT_COMBO] = COMBO(tilt_combo, S(KC_GRV)),
-    [SHIFT_SYMBOL_COMBO] = COMBO(shift_symbol_combo, LM(_SYMBOLS_LAYER, MOD_LSFT)),
-    [CTRL_CORRECTION_COMBO] = COMBO(ctrl_correction_combo, LM(_CORRECTION_LAYER, MOD_LCTL)),
-    [NAVIGATION_COMBO] = COMBO(navigation_combo, MO(_MEDIA_AND_NAVIGATION_LAYER)),
-};
+/*const uint16_t PROGMEM grave_combo[] = {LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};*/
+/*const uint16_t PROGMEM tilt_combo[] = {MT(MOD_RSFT, KC_L), LT(_SYMBOLS_LAYER, KC_I), KC_TAB, COMBO_END};*/
+/*const uint16_t PROGMEM shift_symbol_combo[] = {MT(MOD_RSFT, KC_L), LT(_SYMBOLS_LAYER, KC_I), COMBO_END};*/
+/*const uint16_t PROGMEM ctrl_correction_combo[] = {MT(MOD_RCTL, KC_SCLN), LT(_CORRECTION_LAYER, KC_SPC), COMBO_END};*/
+/*const uint16_t PROGMEM navigation_combo[] = {LT(_FUNCTION_LAYER, KC_ESC), LT(_CORRECTION_LAYER, KC_SPC), COMBO_END};*/
+/*combo_t key_combos[] = {*/
+    /*[GRAVE_COMBO] = COMBO(grave_combo, KC_GRV),*/
+    /*[TILT_COMBO] = COMBO(tilt_combo, S(KC_GRV)),*/
+    /*[SHIFT_SYMBOL_COMBO] = COMBO(shift_symbol_combo, LM(_SYMBOLS_LAYER, MOD_LSFT)),*/
+    /*[CTRL_CORRECTION_COMBO] = COMBO(ctrl_correction_combo, LM(_CORRECTION_LAYER, MOD_LCTL)),*/
+    /*[NAVIGATION_COMBO] = COMBO(navigation_combo, MO(_MEDIA_AND_NAVIGATION_LAYER)),*/
+/*};*/
 
 uint16_t space_tapping_term = 150;
 uint16_t function_tapping_term = 225;
@@ -312,13 +312,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+/*uint16_t get_combo_term(uint16_t index, combo_t *combo) {*/
+    /*switch (index) {*/
+        /*case SHIFT_SYMBOL_COMBO:*/
+            /*return 35;*/
+    /*}*/
 
-uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    switch (index) {
-        case SHIFT_SYMBOL_COMBO:
-            return 35;
-    }
-
-    return COMBO_TERM;
-}
+    /*return COMBO_TERM;*/
+/*}*/
 
