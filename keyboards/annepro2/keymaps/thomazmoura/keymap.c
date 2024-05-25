@@ -74,7 +74,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                TG(_STENO_LAYER), _______, _______, _______, _______, _______, _______, _______, _______, STN_FN, STN_RES1, STN_RES2, STN_PWR, KC_BSPC,
     LT(_FUNCTION_LAYER, KC_TAB),  STN_S1,  STN_TL,  STN_PL,  STN_HL,    KC_T,    KC_Y,  STN_FR,  STN_PR,  STN_LR,  STN_TR,  STN_DR, KC_RBRC, LT(_FUNCTION_LAYER, KC_BSLS),
                          KC_ESC,  STN_S2,  STN_KL,  STN_WL,  STN_RL,    KC_G,    KC_H,  STN_RR,  STN_BR,  STN_GR,  STN_SR,  STN_ZR,  KC_ENT,
-                        _______, _______, _______,   STN_A,   STN_O,   STN_E,   STN_U, _______, _______, _______, _______,   KC_UP,
+                        _______, _______, STN_A,   STN_O,   _______,  _______, _______, STN_E,   STN_U, _______, _______,   KC_UP,
                         _______, XXXXXXX, _______,  KC_SPC, TG(_GAME_LAYER),  KC_LEFT, KC_DOWN, KC_RGHT
   ),
   [_TRAINING_LAYER] = LAYOUT_60_ansi(
