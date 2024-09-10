@@ -57,8 +57,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_NUMPAD_LAYER] = LAYOUT_60_ansi(
     _______, _______, _______, _______, _______, _______, _______, _______, KC_PAST, _______,    KC_PSLS,  KC_PMNS, KC_PPLS, _______,
-    _______,    KC_1,    KC_2,   KC_UP,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_COMM,  _______, _______, _______,
-    _______,    KC_3, KC_LEFT, KC_DOWN, KC_RGHT, _______,    KC_0,    KC_4,    KC_5,    KC_6, S(KC_SCLN),   KC_DOT, _______,
+    _______,    KC_1, LT(_NUMPAD_LAYER,KC_2),   KC_UP,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_COMM,  _______, _______, _______,
+    LT(_FUNCTION_LAYER, KC_ESC),MT(MOD_LCTL, KC_3),MT(MOD_LSFT,KC_LEFT),MT(MOD_LGUI,KC_DOWN),MT(MOD_LALT,KC_RGHT), _______,    KC_0,MT(MOD_LALT,KC_4),MT(MOD_LGUI,KC_5),MT(MOD_LSFT,KC_6),MT(MOD_LCTL,KC_SCLN),   KC_DOT, _______,
     _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3,    KC_SLSH,  _______,
     _______, _______, _______, LT(_CORRECTION_LAYER, KC_SPC), TG(_NUMPAD_LAYER), _______, _______, _______
   ),
