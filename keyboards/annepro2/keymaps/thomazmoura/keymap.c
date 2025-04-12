@@ -45,8 +45,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_GRV,    KC_1,    KC_2,  KC_3,  KC_4,  KC_5,      KC_6,    KC_7,    KC_8,           KC_9,     KC_0,   KC_MINS,  KC_EQL, KC_BSPC,
             KC_TAB,    KC_Q,    LT(_NUMPAD_LAYER, KC_W),  LT(_SYMBOLS_LAYER, KC_E), KC_R, KC_T, KC_Y, KC_U, LT(_SYMBOLS_LAYER, KC_I), LT(_NUMPAD_LAYER, KC_O), KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
   LT(_FUNCTION_LAYER, KC_ESC),  MT(MOD_LCTL, KC_A), MT(MOD_LSFT, KC_S),  MT(MOD_LGUI, KC_D),  MT(MOD_LALT, KC_F),  KC_G,      KC_H,    MT(MOD_LALT, KC_J),    MT(MOD_LGUI, KC_K), MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),   KC_QUOT,  KC_ENT,
-           KC_LSFT,    LT(_FUNCTION_KEYS_LAYER, KC_Z),    LT(_BRACKETS_LAYER, KC_X),  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  LT(_FUNCTION_KEYS_LAYER, KC_SLSH),   KC_RSFT,
-           KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), KC_RGUI, MO(_FUNCTION_LAYER), KC_RCTL
+           KC_LSFT,    LT(_FUNCTION_KEYS_LAYER, KC_Z),    LT(_BRACKETS_LAYER, KC_X),  KC_C,  KC_V,  KC_B,      KC_N,    KC_M, KC_COMM,         KC_DOT,  LT(_FUNCTION_KEYS_LAYER, KC_SLSH),   MT(MOD_RSFT, KC_UP),
+           KC_LCTL, KC_LGUI, KC_LALT, LT(_CORRECTION_LAYER, KC_SPC), LALT_T(KC_APP), MT(MOD_RGUI, KC_LEFT), LT(_FUNCTION_LAYER, KC_DOWN), MT(MOD_RCTL, KC_RGHT)
   ),
   [_FUNCTION_LAYER] = LAYOUT_60_ansi(
     KC_CAPS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_DEL,
@@ -131,7 +131,7 @@ bool is_caps_on = false;
 
 const ap2_led_t caps_color = {.p.red = 0xff, .p.green = 0x00, .p.blue = 0x00, .p.alpha = 0xff};
 
-uint8_t idle_profile[] = {0x00,0x00,0x00};
+uint8_t idle_profile[] = {0x33,0x66,0xFF};
 uint8_t caps_profile[] = {0xFF,0x00,0x00};
 uint8_t function_profile[] = {0x00,0xFF,0x00};
 uint8_t navigation_profile[] = {0x00,0xFF,0xFF};
