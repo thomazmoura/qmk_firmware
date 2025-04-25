@@ -87,7 +87,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SYMBOLS_LAYER] = LAYOUT_60_ansi(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_MINS,  KC_EQL, _______,
-    _______,  KC_GRV, _______, _______, _______, _______, _______, S(KC_4), S(KC_5), S(KC_6), MT(MOD_RCTL, KC_MINS), KC_EQL, _______,
+    _______,  KC_GRV, _______, _______,  KC_GRV, _______, _______, S(KC_4), S(KC_5), S(KC_6), MT(MOD_RCTL, KC_MINS), KC_EQL, _______,
     _______, _______, _______, _______, _______, _______, _______, S(KC_1), S(KC_2), S(KC_3), KC_BSLS, _______,
     _______, _______, _______, _______, _______, _______, _______, _______
   ),
